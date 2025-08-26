@@ -41,7 +41,21 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
         ->middleware('project.permission');
 
-    
+    // Tasks
+    Route::get('/projects/{project}/tasks', [TaskController::class, 'index']);
+    Route::post('/projects/{project}/tasks', [TaskController::class, 'store']);
+
+
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])
+        ->middleware('task.permission');
+    Route::put('/tasks/{task}', [TaskController::class, 'update'])
+        ->middleware('task.permission');
+    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])
+        ->middleware('task.permission');
+
+    Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])
+        ->middleware('task.permission');
+
 
 });
 
