@@ -3,8 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
-
+use App\Http\Controllers\ProjectController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +24,24 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Projects
+    // index et store → pas besoin de permission spécifique
+    Route::get('/projects', [ProjectController::class, 'index']);
+    Route::post('/projects', [ProjectController::class, 'store']);
+
+    // show, update et delete → protégés
+    Route::get('/projects/{project}', [ProjectController::class, 'show'])
+        ->middleware('project.permission');
+
+    Route::put('/projects/{project}', [ProjectController::class, 'update'])
+        ->middleware('project.permission');
+    Route::delete('/projects/{project}', [ProjectController::class, 'destroy'])
+        ->middleware('project.permission');
+
+    
+
+});
+
