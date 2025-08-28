@@ -80,7 +80,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### 1 Cloner le dépôt
 ```bash
-git clone https://github.com/ton-username/ton-projet.git
+git clone https://github.com/oussama-art/Project_backend.git
 cd ton-projet
 ```
 ### 2 Installer les dépendances PHP
