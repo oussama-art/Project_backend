@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\TaskStatus;
 
 class Task extends Model
 {
@@ -15,6 +16,10 @@ class Task extends Model
         'status',
         'project_id',
         'assigned_to',
+    ];
+
+    protected $casts = [
+        'status' => TaskStatus::class, // 🔥 Laravel cast automatiquement en Enum
     ];
 
    // Une tâche appartient à un projet.

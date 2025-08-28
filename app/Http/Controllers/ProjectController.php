@@ -15,11 +15,16 @@ class ProjectController extends Controller
     {
         $projects = $request->user()
             ->projects()
-            ->with(['tasks', 'user'])
-            ->get();
+            ->with([
+                'user',                  // propriétaire du projet
+                'tasks.assignedUser'     // chaque tâche avec son utilisateur assigné
+            ])
+            ->paginate(5);
 
         return ProjectResource::collection($projects);
     }
+
+
 
     /**
      * Créer un nouveau projet.
@@ -40,16 +45,20 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        $project->load(['tasks', 'user']);
+        $project->load([
+            'user',                  // propriétaire du projet
+            'tasks.assignedUser'     // charger l'utilisateur assigné de chaque tâche
+        ]);
 
         return new ProjectResource($project);
     }
+
 
     /**
      * Mettre à jour un projet.
      */
     public function update(StoreProjectRequest $request, Project $project)
-    {
+    {   
         $project->update($request->validated());
         $project->load(['tasks', 'user']);
 

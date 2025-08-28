@@ -7,11 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaskResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
+    public static $wrap = null;
+
     public function toArray($request)
     {
         return [
@@ -20,7 +17,7 @@ class TaskResource extends JsonResource
             'description' => $this->description,
             'status'      => $this->status,
             'assigned_to' => new UserResource($this->whenLoaded('assignedUser')),
-            'project'     => new ProjectResource($this->whenLoaded('project')),
+            'project_id'  => $this->project_id, 
             'created_at'  => $this->created_at->toDateTimeString(),
         ];
     }

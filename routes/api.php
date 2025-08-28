@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,14 +50,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/tasks/{task}', [TaskController::class, 'show'])
         ->middleware('task.permission');
+
     Route::put('/tasks/{task}', [TaskController::class, 'update'])
         ->middleware('task.permission');
+
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])
         ->middleware('task.permission');
 
     Route::patch('/tasks/{task}/status', [TaskController::class, 'updateStatus'])
         ->middleware('task.permission');
 
-
+    Route::get('/users', [UserController::class, 'index']);
 });
 
