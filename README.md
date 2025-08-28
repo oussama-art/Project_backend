@@ -64,3 +64,58 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+# 🚀 Backend Laravel - Gestion de Projets & Tâches
+
+## 📌 Prérequis
+- PHP **>= 8.1**
+- Composer
+- MySQL ou MariaDB
+- Node.js & npm (si besoin pour frontend lié)
+- [Laravel](https://laravel.com/docs) 10.x
+
+---
+
+## ⚡ Installation & Démarrage
+
+### 1 Cloner le dépôt
+```bash
+git clone https://github.com/ton-username/ton-projet.git
+cd ton-projet
+```
+### 2 Installer les dépendances PHP
+```bash
+composer install
+```
+
+### 3 Configurer l’environnement
+```bash
+cp .env.example .env
+```
+### 4 Générer la clé d’application
+```bash
+php artisan key:generate
+```
+
+### 5 Exécuter les migrations
+```bash
+php artisan migrate
+
+```
+### 6 Lancer le serveur de développement
+```bash
+php artisan serve
+```
+
+### 6 Lancer les tests
+```bash
+php artisan test
+```
+
+
+
+
+
+
+
+
